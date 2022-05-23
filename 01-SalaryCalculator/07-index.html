@@ -51,12 +51,14 @@
            }
 
            #subscribers = {
-               basic: null,
-               hra: null,
-               da: null,
-               tax: null,
-               salary: null
+               basic: [],
+               hra: [],
+               da: [],
+               tax: [],
+               salary: []
            }
+
+          
 
            get(attrName){
                return this.#data[attrName]
@@ -65,13 +67,19 @@
            set(attrName, val){
                if (this.#data[attrName] === val) return
                this.#data[attrName] = val;
-               var callbackFn = this.#subscribers[attrName];
-               if (typeof callbackFn === 'function')
-                    callbackFn()
+               this.#triggerChange(attrName)
            }
 
+            #triggerChange(attrName) {
+                var callbackFns = this.#subscribers[attrName];
+                callbackFns.forEach(function (callbackFn) {
+                    if (typeof callbackFn === 'function')
+                        callbackFn()
+                });
+            }
+
            subscribe(attrName, callbackFn){
-               this.#subscribers[attrName] = callbackFn;
+               this.#subscribers[attrName].push(callbackFn);
            }
            
             calculate(){
