@@ -42,4 +42,9 @@ SSR (server side rendering)
 
 Salary = Basic + HRA + DA - Tax(%)
 
+Assumptions:
+    1. Preparing the app for deployment (creating separate CSS files, JS files etc) is taken care by another team.
+    2. The app meets 100% expectations of the sponsor.
+        No more UI enhances are needed.
+        No validation logic is needed.
 
