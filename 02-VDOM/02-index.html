@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script>
+
+        var counter = 0;
+        function onBtnRenderClick(){
+            counter++
+            var rootEle = React.createElement('div', null, 
+                React.createElement('h1', null, 'React.js!'),
+                React.createElement('hr'),
+                React.createElement('div', null, 
+                    React.createElement('span', null, 'Counter : '),
+                    React.createElement('span', null, counter)
+                ),
+                React.createElement('section', null, 
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('p', null, 'Commodo ipsum consectetur dolor reprehenderit aute et laborum. In occaecat fugiat sit incididunt veniam Lorem proident Lorem nostrud. Eiusmod excepteur enim aute incididunt irure elit ullamco ipsum et. Ad ex consectetur irure non commodo laboris nulla consequat pariatur irure quis dolor sunt. Excepteur tempor in aliqua minim aliqua culpa culpa dolor id ad esse anim consequat do. Officia minim elit ut reprehenderit ex labore tempor. Cupidatat Lorem magna voluptate velit mollit in laborum culpa elit ut sint nostrud.Esse anim amet aliquip adipisicing non laboris nulla elit anim dolor ea elit culpa enim. Ad reprehenderit deserunt magna commodo sint officia et eu ex. Pariatur laboris nisi exercitation exercitation qui ex laboris proident irure tempor enim ad non. Lorem ut aute ipsum eu elit nulla.'),
+                    React.createElement('p', null, 'Irure in ex dolor laboris ipsum consequat id aliqua nostrud minim. Reprehenderit id veniam est exercitation est et ullamco ut sit laboris cillum ipsum. Pariatur dolore exercitation voluptate esse.Quis velit Lorem fugiat id. Dolore voluptate id ad velit. Laborum Lorem ut sint veniam anim.'),
+                ),
+                React.createElement('section', null, 
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('ul', null,
+                        React.createElement('li', null, 'Efficient'),
+                        React.createElement('li', null, 'Declarative'),
+                    )
+                )
+            )
+           
+            ReactDOM.render(rootEle, document.getElementById('root'));
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick);
+        }
+        window.addEventListener('load', onDocumentLoad);
+
+    </script>
+</head>
+<body>
+    <button id="btnRender">Render</button>
+    <div id="root"></div>
+</body>
+</html>

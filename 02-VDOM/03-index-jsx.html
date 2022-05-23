@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+
+        var counter = 0;
+        function onBtnRenderClick(){
+            counter++
+            var rootEle = (
+                <div>
+                    <h1>React.js</h1>
+                    <hr/>
+                    <div>
+                        <span>Counter : </span>
+                        <span>{counter}</span>
+                    </div>
+                    <section>
+                        <h3>Introduction</h3>
+                        <p>Do reprehenderit officia sint dolor amet incididunt ut officia id nostrud ex fugiat. Minim est sit nisi magna dolore do ex aliquip ea consequat ipsum. Ex ipsum ipsum officia voluptate ipsum nostrud anim irure non ipsum occaecat magna. Cupidatat ea ut deserunt dolor proident sunt cupidatat ad exercitation in. In tempor ad ut veniam id enim.Laborum quis anim sint dolore reprehenderit eu minim laboris in incididunt. Et eiusmod adipisicing et adipisicing dolor sit id eu mollit consectetur. Mollit consectetur consequat exercitation aliqua exercitation velit ea quis pariatur cillum duis duis cupidatat aute. Voluptate amet non irure culpa exercitation.</p>
+                        <p>Laboris ea irure veniam consequat sit consequat aliquip nisi laborum Lorem ea est deserunt ullamco. Sunt et qui culpa commodo cupidatat. Consectetur pariatur proident dolore elit. Ut do commodo sit consectetur nisi qui irure velit reprehenderit. Laboris anim cupidatat consectetur sunt ut sunt aliquip et amet ullamco id irure. Consequat Lorem eiusmod Lorem enim ullamco proident ut mollit voluptate tempor ullamco amet excepteur Lorem. Labore velit incididunt occaecat minim enim deserunt eiusmod laborum excepteur.Consequat aliqua excepteur do consectetur eu. Voluptate amet ea aliqua fugiat anim voluptate. Cillum adipisicing nisi nulla aute qui cillum. Adipisicing aute do eu nostrud commodo pariatur cillum Lorem Lorem ipsum nulla duis ut. Officia laboris voluptate ad irure magna non mollit est. In est aliqua consequat commodo sit elit amet excepteur fugiat exercitation adipisicing minim esse.</p>
+                        <p>Eiusmod dolore aliqua nisi culpa ullamco ex eu incididunt adipisicing. Consequat nisi ipsum ad qui. Id adipisicing irure pariatur aliqua. Dolor ullamco pariatur pariatur do Lorem exercitation.Nisi occaecat sit exercitation id. Cupidatat deserunt commodo non consequat irure tempor deserunt. Irure eu irure elit enim cupidatat. Ex quis excepteur aliqua dolor amet qui nisi labore consequat reprehenderit consectetur eu deserunt. Veniam consequat occaecat et excepteur et culpa. Non pariatur ipsum irure est amet elit deserunt esse ad eiusmod et. Sit id fugiat commodo ea labore do laboris in aliqua incididunt labore est Lorem cupidatat.</p>
+                    </section>
+                    <section>
+                        <h3>Advantages</h3>
+                        <ul>
+                            <li>Declarative</li>
+                            <li>Efficient</li>
+                        </ul>
+                    </section>
+                </div>
+            )
+           
+            ReactDOM.render(rootEle, document.getElementById('root'));
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick);
+        }
+        window.addEventListener('load', onDocumentLoad);
+
+    </script>
+</head>
+<body>
+    <button id="btnRender">Render</button>
+    <div id="root"></div>
+</body>
+</html>
