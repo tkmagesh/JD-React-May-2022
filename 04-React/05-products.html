@@ -10,8 +10,26 @@
     <script src="react-dom.development.js"></script>
     <script type="text/babel">
         class Products extends React.Component{
+            state = {
+                newProductName : '',
+                productNames : []
+            };
+
+            onBtnAddNewClick = () => {
+                const { newProductName, productNames } = this.state;
+                this.setState({
+                    productNames : [...productNames, newProductName]
+                });
+            };
+
+            onRemoveClick = (productName) => {
+                const { productNames } = this.state;
+                this.setState({
+                    productNames : productNames.filter(p => p !== productName)
+                });
+            }
             render(){
-                const productNames = ['Pen', 'Pencil'];
+                const { productNames } = this.state;
                 /* 
                 const productItems = []
                 for (let idx = 0; idx < productNames.length; idx++){
@@ -23,7 +41,7 @@
                 const productItems = productNames.map((productName, idx) => (
                     <li key={idx}>
                         <span>{productName}</span>
-                        <button> X </button>
+                        <button onClick={ () => this.onRemoveClick(productName)}> X </button>
                     </li>));
 
                 return(
@@ -31,8 +49,8 @@
                         <h1>Products</h1>
                         <hr/>
                         <label>Product Name :</label>
-                        <input type="text" name="" id=""/>
-                        <button>Add New</button>
+                        <input type="text" onChange={ evt => this.setState({newProductName : evt.target.value}) }/>
+                        <button onClick={this.onBtnAddNewClick}>Add New</button>
                         <ul>
                             {productItems}
                         </ul>
