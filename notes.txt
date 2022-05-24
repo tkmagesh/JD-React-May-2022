@@ -96,3 +96,18 @@ Write the code for the following:
 
 5. Create a new list of products with the products cost applied with 10% discount (use the 'map' method)
         var discountedProducts = products.map(product => ({...product, cost : product.cost * 0.9 }))
+
+
+Component
+    encapsulation of Presentation + User Interaction + State
+
+HTML vs JSX
+    HTML
+        Open tags without corresponding close tags are allowed
+        "for" attributes are allowed
+        "class" attributes are allowed
+
+    JSX
+        Every open tag MUST have a corresponding close tag
+        Use "htmlFor" inplace of "for" attributes
+        Use "className" inplace of "class" attributes

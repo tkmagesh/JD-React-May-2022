@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeter</title>
+    <style>
+        .message{
+            color : blue;
+        }
+
+    </style>
+    <script src="babel.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+        class Greeter extends React.Component{
+            //state
+            state = {
+                counter : 0
+            };
+
+            //UI Behavior
+            onBtnStartClick = () => {
+                setInterval(() => {
+                    this.setState({
+                        counter: this.state.counter + 1
+                    })
+                },1000)
+            };
+
+            //Presentation
+            render(){
+                return(
+                    <div>
+                        <h1>Counter</h1>
+                        <hr/>
+                        <button onClick={this.onBtnStartClick}>Start</button>
+                        <h3>{this.state.counter}</h3>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Greeter/>, 
+            document.getElementById('root')
+        )
+    </script>
+</head>
+<body>
+    <div id="root">
+       
+    </div>
+</body>
+</html>
