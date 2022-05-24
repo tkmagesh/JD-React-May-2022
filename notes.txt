@@ -111,3 +111,16 @@ HTML vs JSX
         Every open tag MUST have a corresponding close tag
         Use "htmlFor" inplace of "for" attributes
         Use "className" inplace of "class" attributes
+
+
+Create a React component (Calculator) (using state) for the following
+    <h1>Calculator</h1>
+    <hr>
+    <input type="number" name="" id="">
+    <input type="number" name="" id="">
+    <br>
+    <button>Add</button>
+    <button>Subtract</button>
+    <button>Multiply</button>
+    <button>Divide</button>
+    <div>Result</div>
