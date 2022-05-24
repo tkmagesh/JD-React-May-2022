@@ -48,3 +48,41 @@ Assumptions:
         No more UI enhances are needed.
         No validation logic is needed.
 
+ES6 (ES2015 / ECMAScript6 / ESNext)
+1. let
+2. const
+3. array destructuring
+4. rest operator (arrays)
+5. spread operator (arrays)
+6. object destructuring
+7. rest operator (objects)
+8. spread operator (objects)
+9. default parameters
+10. arrow functions
+11. iterators (for..of)
+12. classes
+
+Array Methods
+    forEach
+    map
+    reduce
+    filter
+
+Exercise
+var products = [
+	{id : 6, name : 'Pen', cost : 50, units : 20, category : 'stationary'},
+	{id : 9, name : 'Ten', cost : 70, units : 70, category : 'stationary'},
+	{id : 3, name : 'Len', cost : 60, units : 60, category : 'grocery'},
+	{id : 5, name : 'Zen', cost : 30, units : 30, category : 'grocery'},
+	{id : 1, name : 'Ken', cost : 20, units : 80, category : 'utencil'},
+    {id : 7, name : 'Mouse', cost : 100, units : 20, category : 'electronics'}
+];
+
+Write the code for the following:
+(NOTE: DO NOT use a loop)
+
+1. Filter the stationary products (use the 'filter' method)
+2. Print the name & cost of the products (use the 'forEach' method)
+3. Find the minimum cost (use the 'reduce' method)
+4. Find the product with the least cost (use the 'reduce' method)
+5. Create a new list of products with the products cost applied with 10% discount (use the 'map' method)
