@@ -82,7 +82,17 @@ Write the code for the following:
 (NOTE: DO NOT use a loop)
 
 1. Filter the stationary products (use the 'filter' method)
+        var stationaryProducts = products.filter(product => product.category === 'stationary')
+
 2. Print the name & cost of the products (use the 'forEach' method)
+        products.forEach(product => console.log(product.name, product.cost))
+
+
 3. Find the minimum cost (use the 'reduce' method)
+        products.reduce((result, product) => product.cost < result ? product.cost : result, Number.MAX_VALUE)
+
 4. Find the product with the least cost (use the 'reduce' method)
+        products.reduce((result, product) => result.cost < product.cost ? result : product)
+
 5. Create a new list of products with the products cost applied with 10% discount (use the 'map' method)
+        var discountedProducts = products.map(product => ({...product, cost : product.cost * 0.9 }))
