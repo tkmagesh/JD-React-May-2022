@@ -124,3 +124,5 @@ Create a React component (Calculator) (using state) for the following
     <button>Multiply</button>
     <button>Divide</button>
     <div>Result</div>
+
+Create a Salary Calculator using React
