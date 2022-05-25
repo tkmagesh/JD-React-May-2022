@@ -34,6 +34,24 @@
                 
             };
 
+            //lifecycle events
+            componentWillMount(){
+                console.log('componentWillmount triggered')
+            }
+
+            componentDidMount() {
+                console.log('componentDidmount triggered')
+            }
+
+            componentWillUnmount(){
+                console.log('componentWillUnmount triggered')
+            }
+
+            shouldComponentUpdate(prevProps, prevState){
+                console.log('shouldComponentUpdate triggered')
+                return true
+            }
+
             //Presentation
             render(){
                 return(
@@ -49,10 +67,27 @@
             }
         }
 
-        ReactDOM.render(
-            <Greeter/>, 
-            document.getElementById('root')
-        )
+       
+
+        class MyApp extends React.Component{
+            state = {
+                show : true
+            };
+            render(){
+                return(
+                    <div> 
+                        <label>Show ? :</label>
+                        <input type="checkbox" onChange={ evt => this.setState({ show: evt.target.checked })} />
+                        {this.state.show ? <Greeter/> : null}
+                    </div>
+                )
+            }
+        }
+
+         ReactDOM.render(
+                <MyApp />,
+                document.getElementById('root')
+            )
     </script>
 </head>
 <body>
