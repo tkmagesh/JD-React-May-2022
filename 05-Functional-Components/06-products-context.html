@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <script src="babel.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+        
+        const ProductsContext = React.createContext();
+
+        const App = () => {
+            const [productNames, setProductNames] = React.useState([])
+            const addProduct = (newProductName) => {
+                setProductNames([...productNames, newProductName])
+            };
+            const removeProduct = (productName) => {
+                setProductNames(productNames.filter(p => p !== productName))
+            }
+
+            const contextValue = {
+                list : productNames,
+                addNew : addProduct,
+                remove : removeProduct
+            };
+
+            return (
+                <div>
+                    <ProductsContext.Provider value={contextValue}>
+                        <ProductsCount/>
+                        <Products/>
+                    </ProductsContext.Provider>
+                </div>
+            )
+        }
+        const Products = () => {
+            //const [productNames, setProductNames] = React.useState([])
+            const [newProductName, setNewProductName] = React.useState('');
+
+            const {list : productNames, addNew, remove} = React.useContext(ProductsContext);
+
+            const removeProduct = (productName) => {
+                remove(productName);
+            };
+
+            const addProduct = () => {
+                //setProductNames([...productNames, newProductName])
+                addNew(newProductName);
+            };
+
+            const productItems = productNames.map((productName, idx) => (
+                <li key={idx}>
+                    <span>{productName}</span>
+                    <button onClick={() => removeProduct(productName)}> X </button>
+                </li>));
+
+            return (
+                <div>
+                    <h1>Products</h1>
+                  
+                    <hr />
+                    <label>Product Name :</label>
+                    <input type="text" onChange={evt => setNewProductName(evt.target.value)} />
+                    <button onClick={addProduct}>Add New</button>
+                    <ul>
+                        {productItems}
+                    </ul>
+                </div>
+            )
+        }
+
+        const ProductsCount = () => {
+            const {list} = React.useContext(ProductsContext)
+            return (
+                <div>
+                    Products Count : {list.length}
+                </div>
+            );
+            }
+
+        ReactDOM.render(
+            <div>
+                <App/>
+            </div>
+        , document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+</html>
