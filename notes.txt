@@ -126,3 +126,17 @@ Create a React component (Calculator) (using state) for the following
     <div>Result</div>
 
 Create a Salary Calculator using React
+
+React Hooks
+    functions designed to handle the side-effects of a component
+    Built-in hooks
+        useState (manage state)
+        useEffect (manage life-cycle events)
+        useContext (manage context)
+        useReducer (manage complex state)
+        useCallback (manage memoization)
+        useMemo
+        useRef
+        useImperativeHandle
+        useLayoutEffect
+        useDebugValue
