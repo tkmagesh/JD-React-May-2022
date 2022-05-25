@@ -11,7 +11,8 @@
     <script src="react-dom.development.js"></script>
     <!-- 
         01. initial version
-
+        02. remove the dependency on the store
+        03. introducting 'action creators'
 
      -->
     <script type="text/babel">
@@ -26,24 +27,44 @@
         }
         const store = StateManager.createStore(spinnerReducer);
 
-        const Spinner = ({store}) => {
-            const increment_action = { type: 'INCREMENT' },
-                decrement_action = { type: 'DECREMENT' };
-            const value = store.getState();
+        const Spinner = ({value, dispatch, actionCreators}) => {
+
+            const onDecrementClick = () => {
+                const action = actionCreators.decrement();
+                dispatch(action);
+            };
+
+            const onIncrementClick = () => {
+                const action = actionCreators.increment();
+                dispatch(action);
+            };
+
             return (
                 <div>
                     <h1>Spinner</h1>
                     <hr />
-                    <button onClick={ () => store.dispatch(decrement_action) }>Decrement</button>
+                    <button onClick={onDecrementClick}>Decrement</button>
                     <span> [ {value} ] </span>
-                    <button onClick={ () => store.dispatch(increment_action) }>Increment</button>
+                    <button onClick={onIncrementClick}>Increment</button>
                 </div>
             )
         }
 
+        const spinnerActionCreators = {
+            decrement(){
+                const action = { type: 'DECREMENT' };
+                return action;
+            },
+            increment(){
+                const action = { type: 'INCREMENT' };
+                return action;
+            }
+        }
+
         function renderSpinner(){
+            const value = store.getState();
             ReactDOM.render(
-                <Spinner store={store}/>
+                <Spinner value={value} dispatch={store.dispatch} actionCreators={spinnerActionCreators}/>
                 , document.getElementById('root')
             );
         }

@@ -11,6 +11,7 @@
     <script src="react-dom.development.js"></script>
     <!-- 
         01. initial version
+        02. remove the dependency on the store
 
 
      -->
@@ -26,24 +27,25 @@
         }
         const store = StateManager.createStore(spinnerReducer);
 
-        const Spinner = ({store}) => {
+        const Spinner = ({value, dispatch}) => {
             const increment_action = { type: 'INCREMENT' },
                 decrement_action = { type: 'DECREMENT' };
-            const value = store.getState();
+            
             return (
                 <div>
                     <h1>Spinner</h1>
                     <hr />
-                    <button onClick={ () => store.dispatch(decrement_action) }>Decrement</button>
+                    <button onClick={ () => dispatch(decrement_action) }>Decrement</button>
                     <span> [ {value} ] </span>
-                    <button onClick={ () => store.dispatch(increment_action) }>Increment</button>
+                    <button onClick={ () => dispatch(increment_action) }>Increment</button>
                 </div>
             )
         }
 
         function renderSpinner(){
+            const value = store.getState();
             ReactDOM.render(
-                <Spinner store={store}/>
+                <Spinner value={value} dispatch={store.dispatch}/>
                 , document.getElementById('root')
             );
         }
