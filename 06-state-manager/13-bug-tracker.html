@@ -47,10 +47,21 @@
     <script type="text/babel">
 
         function bugsReducer(currentState = [], action){
-            if (action.type === 'BUGS_ADD'){
-                return [...currentState, action.payload];
+            switch (action.type){
+                case 'BUGS_ADD':
+                    return [...currentState, action.payload];
+                case 'BUGS_UPDATE':
+                    return currentState.map(bug => bug.id === action.payload.id ? action.payload : bug);
+                case 'BUGS_REMOVE':
+                    return currentState.filter(bug => bug.id !== action.payload.id);
+                case 'BUGS_INIT':
+                    return action.payload;
+                case 'BUGS_REMOVE_MANY':
+                    const bugsToRemove = action.payload;
+                    return currentState.filter(bug => !bugsToRemove.find(bt => bt.id == bug.id))
+                default :
+                    return currentState
             }
-            return currentState;
         }
 
         //TO BE FIXED
@@ -67,28 +78,56 @@
                 console.log(newBug);
                 const action = { type : 'BUGS_ADD', payload : newBug };
                 return action;
+            },
+            toggle(bugToToggle){
+                const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed};
+                const action = { type: 'BUGS_UPDATE', payload: toggledBug };
+                return action;
+            },
+            remove(bugToRemove){
+                const action = { type: 'BUGS_REMOVE', payload: bugToRemove };
+                return action;
+            },
+            removeClosed(bugs /* TO BE FIXED */){
+               
+                const bugsToRetain = bugs.filter( bug => !bug.isClosed)
+                const action = { type: 'BUGS_INIT', payload: bugsToRetain };
+                return action; 
+               
+                /* 
+                const bugsToRemove = bugs.filter(bug => bug.isClosed);
+                const action = { type: 'BUGS_REMOVE_MANY', payload: bugsToRemove };
+                return action;  
+                */
             }
         }
 
         
-        const Bugs = ({bugs, addNew}) => {
+        const Bugs = ({bugs, addNew, toggle, remove, removeClosed}) => {
             const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => (
                  <li key={bug.id}>
-                    <span className="bugname">
+                
+                    <span 
+                        className={ "bugname " + (bug.isClosed ? 'closed' : '')}
+                        onClick={ () => toggle(bug)}
+                    >
                         {bug.name}
                     </span>
-                    <div className="datetime">{bug.createdAt.toString()}</div>
-                    <button>Remove</button>
+                    <div className="datetime">{bug.createdAt.toString()}</div> 
+                
+                    {/* <div onClick={() => toggle(bug)}>{JSON.stringify(bug)} </div> */}
+                    <button onClick={ () => remove(bug)}>Remove</button>
                 </li>
             ));
+            const closedCount = bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0);
             return (
                  <div>
                     <h3>Bugs</h3>
                     <section className="stats">
-                        <span className="closed">1</span>
+                        <span className="closed">{closedCount}</span>
                         <span> / </span>
-                        <span>2</span>
+                        <span>{bugs.length}</span>
                     </section>
                     <section className="edit">
                         <label htmlFor="">Bug Name :</label>
@@ -116,7 +155,7 @@
                                 </li> 
                             */}
                         </ol>
-                        <button>Remove Closed</button>
+                        <button onClick={() => removeClosed(bugs)}>Remove Closed</button>
                     </section>
                 </div>
             )
