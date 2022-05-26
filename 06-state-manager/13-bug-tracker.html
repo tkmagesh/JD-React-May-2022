@@ -46,16 +46,42 @@
     <script src="redux.js"></script>
     <script type="text/babel">
 
-        function bugsReducer(/*  */){
-            /*  */
+        function bugsReducer(currentState = [], action){
+            if (action.type === 'BUGS_ADD'){
+                return [...currentState, action.payload];
+            }
+            return currentState;
         }
 
+        //TO BE FIXED
+        let _currentBugId = 0;
+
         let bugActionCreators = {
-            /*  */
+            addNew(bugName){
+                const newBug = {
+                    id : ++_currentBugId,
+                    name : bugName,
+                    isClosed : false,
+                    createdAt : new Date()
+                };
+                console.log(newBug);
+                const action = { type : 'BUGS_ADD', payload : newBug };
+                return action;
+            }
         }
 
         
-        const Bugs = () => {
+        const Bugs = ({bugs, addNew}) => {
+            const [newBugName, setNewBugName] = React.useState('');
+            const bugItems = bugs.map(bug => (
+                 <li key={bug.id}>
+                    <span className="bugname">
+                        {bug.name}
+                    </span>
+                    <div className="datetime">{bug.createdAt.toString()}</div>
+                    <button>Remove</button>
+                </li>
+            ));
             return (
                  <div>
                     <h3>Bugs</h3>
@@ -66,8 +92,8 @@
                     </section>
                     <section className="edit">
                         <label htmlFor="">Bug Name :</label>
-                        <input type="text" name="" id="" />
-                        <button>Add Bug</button>
+                        <input type="text" onChange={ evt => setNewBugName(evt.target.value)} />
+                        <button onClick={() => addNew(newBugName)}>Add Bug</button>
                     </section>
                     <section className="sort">
                         <label htmlFor="">Order By :</label>
@@ -81,16 +107,14 @@
                     </section>
                     <section className="list">
                         <ol>
-                            <li>
-                                <span className="bugname">[Bug - 1]</span>
-                                <div className="datetime">[Created At]</div>
-                                <button>Remove</button>
-                            </li>
-                            <li>
-                                <span className="bugname closed">[Bug - 2]</span>
-                                <div className="datetime">[Created At]</div>
-                                <button>Remove</button>
-                            </li>
+                            {bugItems}
+                            {/* 
+                                <li>
+                                    <span className="bugname closed">[Bug - 2]</span>
+                                    <div className="datetime">[Created At]</div>
+                                    <button>Remove</button>
+                                </li> 
+                            */}
                         </ol>
                         <button>Remove Closed</button>
                     </section>
@@ -102,7 +126,11 @@
         const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
 
         function renderApp(){
-            ReactDOM.render(<Bugs/>, document.getElementById('root'));
+            const bugs = store.getState();
+            ReactDOM.render(
+                <Bugs bugs={bugs} {...bugActionDispatchers}/>
+                , document.getElementById('root')
+            );
         }
         renderApp();
         store.subscribe(renderApp);

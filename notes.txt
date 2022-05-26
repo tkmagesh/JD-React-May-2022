@@ -157,12 +157,12 @@ Context
     Used when some data need to be shared across component hierarchy without needing to pass the data as props
 
 Bug Tracker
-    1. Add new bugs
+    (done) 1. Add new bugs
     2. List the added bugs
     3. Toggle the closed status of the bug
     4. Delete the bug
     5. Delete all closed bugs
-    6. Display stats 
+    6. Display stats  (# of closed bugs / total # of bugs)
     7. Sort the bugs (Homework)
     8. Refactor the 'Bug' component into smaller components (BugStats, BugSort, BugEdit, BugList, BugItem)
     9. Persist the bugs in the server
