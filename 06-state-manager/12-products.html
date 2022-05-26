@@ -11,31 +11,32 @@
     <script src="state-manager.js"></script>
     <script type="text/babel">
 
-        function productsReducer(/*  */){
-            /*  */
+        function productsReducer(currentState = [], action){
+            if (action.type === 'PRODUCTS_ADD')
+                return [...currentState, action.payload];
+            if (action.type === 'PRODUCTS_REMOVE')
+                return currentState.filter(product => product !== action.payload);
+            return currentState;
         }
         const productActionCreators = {
-            /*  */
+            addNew(productName){
+                return { type : 'PRODUCTS_ADD', payload : productName }
+            },
+            remove(productName){
+                return { type: 'PRODUCTS_REMOVE', payload: productName }   
+            }
         }
 
         const store = StateManager.createStore(productsReducer);
 
-        const productActionDispatchers = /*  */;
+        const productActionDispatchers = StateManager.bindActionCreators(productActionCreators, store.dispatch);
 
-        const Products = () => {
+        const Products = ({productNames, addNew, remove}) => {
                 const [newProductName, setNewProductName] = React.useState('');
-                const removeProduct = (productName) => {
-                    
-                };
-
-                const addProduct = () => {
-                    
-                };
-
                 const productItems = productNames.map((productName, idx) => (
                     <li key={idx}>
                         <span>{productName}</span>
-                        <button onClick={() => removeProduct(productName)}> X </button>
+                        <button onClick={() => remove(productName)}> X </button>
                     </li>));
 
                 return (
@@ -44,7 +45,7 @@
                         <hr />
                         <label>Product Name :</label>
                         <input type="text" onChange={evt => setNewProductName(evt.target.value)} />
-                        <button onClick={addProduct}>Add New</button>
+                        <button onClick={() => addNew(newProductName)}>Add New</button>
                         <ul>
                             {productItems}
                         </ul>
@@ -52,7 +53,14 @@
                 )
             }
 
-            ReactDOM.render(<Products/>, document.getElementById('root'));
+            function renderApp(){
+                const productNames = store.getState();
+                ReactDOM.render(
+                    <Products productNames={productNames} {...productActionDispatchers}/>, 
+                    document.getElementById('root'));
+            }
+            renderApp();
+            store.subscribe(renderApp);
     </script>
 </head>
 <body>
