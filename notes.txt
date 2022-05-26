@@ -170,3 +170,28 @@ Bug Tracker
     11. Associate bugs with a project
     12. Access the bugs using a unique URL (routing)
     
+
+To use multiple versions of Node.js
+    Download and install nvm from https://github.com/coreybutler/nvm-windows/releases
+    nvm install latest
+    nvm use latest
+
+To install yarn
+    [sudo] npm install yarn -g
+
+To create a react application (run the command in the folder where you want to create the application)
+    npx create-react-app <app-name>
+    yarn create react-app <app-name>
+
+    yarn create react-app bug-tracker-app
+
+To start the application
+    npm start
+    yarn start
+
+ES6 Modules
+    Everything defined in a js file is considered PRIVATE
+    Public entities have to be explicitly EXPORTED
+    To use the public entities from other files, they have to explicitly IMPORTED
+
+    There can be ONE (ONLY ONE) default export from a file
