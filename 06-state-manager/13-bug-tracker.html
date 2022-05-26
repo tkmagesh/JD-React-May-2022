@@ -46,6 +46,7 @@
     <script src="redux.js"></script>
     <script type="text/babel">
 
+        /* reducers */
         function bugsReducer(currentState = [], action){
             switch (action.type){
                 case 'BUGS_ADD':
@@ -64,6 +65,18 @@
             }
         }
 
+        function projectsReducer(currentState = [], action){
+            switch (action.type) {
+                case 'PROJECTS_ADD':
+                    return [...currentState, action.payload];
+                    break;
+            
+                default:
+                    return currentState;
+            }
+        }
+
+        /* ActionCreators */
         //TO BE FIXED
         let _currentBugId = 0;
 
@@ -102,6 +115,16 @@
             }
         }
 
+        let _currentProjectId = 0;
+
+        let projectActionCreators = {
+            addNew(projectName){
+                const newProject = { id : ++_currentProjectId, name : projectName };
+                return { type : 'PROJECTS_ADD', payload : newProject}
+            }
+        }
+
+        /* Components */
         const BugStats = ({bugs}) => {
             const closedCount = bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0);
             return (
@@ -161,17 +184,17 @@
                         {bug.name}
                     </span>
                     <div className="datetime">{bug.createdAt.toString()}</div>
-
-                    {/* <div onClick={() => toggle(bug)}>{JSON.stringify(bug)} </div> */}
                     <button onClick={() => remove(bug)}>Remove</button>
                 </li>
             )
         }
         
+        //Container / Smart component
         const Bugs = ({bugs, addNew, toggle, remove, removeClosed}) => {
             return (
                  <div>
                     <h3>Bugs</h3>
+                    {/* Dumb / Presentation components */}
                     <BugStats bugs={bugs} />
                     <BugEdit addNew={addNew} />
                     <BugSort/>
@@ -180,13 +203,66 @@
             )
         }
 
+        const Projects = ({projects, addNew}) => {
+            const [newProjectName, setNewProjectName] = React.useState('');
+            return (
+                <div>
+                    <h3>Projects</h3>
+                    <label htmlFor="">Project Name :</label>
+                    <input type="text" onChange={ evt => setNewProjectName(evt.target.value) }/>
+                    <button onClick={() => addNew(newProjectName)}>Add New</button>
+                    <ol>
+                        {projects.map(project => (<li key={project.id}>{project.name}</li>))}
+                    </ol>
+                </div>
+            );
+        }
+        
+        /* 
         const store = Redux.createStore(bugsReducer);
         const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
-
         function renderApp(){
             const bugs = store.getState();
             ReactDOM.render(
                 <Bugs bugs={bugs} {...bugActionDispatchers}/>
+                , document.getElementById('root')
+            );
+        } 
+        */
+
+        /* 
+        const store = Redux.createStore(projectsReducer);
+        const projectActionDispatchers = Redux.bindActionCreators(projectActionCreators, store.dispatch);
+        function renderApp() {
+            const projects = store.getState();
+            ReactDOM.render(
+                <Projects projects={projects} {...projectActionDispatchers} />
+                , document.getElementById('root')
+            );
+        }  
+        */
+
+        /* Store */
+        const rootReducer = Redux.combineReducers({
+            bugsState : bugsReducer,
+            projectsState : projectsReducer
+        });
+        const store = Redux.createStore(rootReducer);
+
+        /* Action Dispatchers */
+        const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
+        const projectActionDispatchers = Redux.bindActionCreators(projectActionCreators, store.dispatch);
+
+        function renderApp(){
+            const storeState = store.getState(),
+                bugs = storeState.bugsState,
+                projects = storeState.projectsState;
+
+            ReactDOM.render(
+                <div>
+                    <Projects projects={projects} {...projectActionDispatchers} />
+                    <Bugs bugs={bugs} {...bugActionDispatchers} />
+                </div>
                 , document.getElementById('root')
             );
         }

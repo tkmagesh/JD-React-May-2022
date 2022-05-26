@@ -164,9 +164,9 @@ Bug Tracker
     (done) 5. Delete all closed bugs
     (done) 6. Display stats  (# of closed bugs / total # of bugs)
     7. Sort the bugs (Homework)
-    8. Refactor the 'Bug' component into smaller components (BugStats, BugSort, BugEdit, BugList, BugItem)
+    (done) 8. Refactor the 'Bug' component into smaller components (BugStats, BugSort, BugEdit, BugList, BugItem)
     9. Persist the bugs in the server
-    10. Add & List the projects
+    (done) 10. Add & List the projects (project = {id, name})
     11. Associate bugs with a project
     12. Access the bugs using a unique URL (routing)
     
