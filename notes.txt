@@ -185,6 +185,10 @@ To create a react application (run the command in the folder where you want to c
 
     yarn create react-app bug-tracker-app
 
+To install redux
+    npm install redux
+    yarn add redux
+
 To start the application
     npm start
     yarn start
@@ -195,3 +199,34 @@ ES6 Modules
     To use the public entities from other files, they have to explicitly IMPORTED
 
     There can be ONE (ONLY ONE) default export from a file
+
+
+applicatin structure
+    /src
+        /bugs
+            /actions
+                addNew.js
+                toggle.js
+                remove.js
+                removeClosed.js
+                index.js (combine all the action creators and export them as 1 action creator object)
+            /components
+                BugStats
+                BugSort
+                BugEdit
+                BugItem
+                BugList
+            /reducers
+                bugsReducer
+            index.js (Bugs Component)
+
+        /projects
+            /actions
+                addNew.js               
+                index.js (combine all the action creators and export them as 1 action creator object)
+            /reducers
+                projectsReducer
+            index.js (Projects Component)
+            
+        /store
+            /index.js (create the store)

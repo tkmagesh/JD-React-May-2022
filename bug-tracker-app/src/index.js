@@ -1,19 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { bindActionCreators } from 'redux';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import * as bugActionCreators from './bugs/actions';
+import * as projectActionCreators from './projects/actions';
+import store from './store';
+import Bugs from './bugs';
+import Projects from './projects';
 
-
-import utils, {add, subtract} from './calculator'
-console.log(utils, add, subtract)
+const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
+const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function renderApp(){
+    const storeState = store.getState(),
+        bugs = storeState.bugsState,
+        projects = storeState.projectsState;
+
+    root.render(
+      <React.StrictMode>
+         <div>
+            <Projects projects={projects} {...projectActionDispatchers} />
+            <Bugs bugs={bugs} {...bugActionDispatchers} />
+        </div>
+      </React.StrictMode>
+    );
+}
+renderApp();
+store.subscribe(renderApp);
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -50,4 +67,9 @@ console.log(add(1000,2000))
 /* 
 import utils from './calculator';
 console.log(utils); 
+*/
+
+/* 
+import utils, {add, subtract} from './calculator'
+console.log(utils, add, subtract) 
 */
