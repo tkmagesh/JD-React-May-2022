@@ -239,3 +239,10 @@ react-redux
 
 Redux Middleware
     Used to encapsulate any logic that is common across actions
+
+    yarn add redux-logger
+    npm install redux-logger
+
+Asynchronous Programming
+    Asynchronous operation
+        An operation that is initiated but not waited for its completion
