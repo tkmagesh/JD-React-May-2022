@@ -281,3 +281,9 @@ Axios
         Deleting an existing project
         axios.delete('http://localhost:3030/projects/4')
             .then(response => console.log('project deleted'))
+
+Implement the following
+    loading bugs the server
+    add new bugs in the server
+    update bugs in the server
+    remove 1 bug in the server
