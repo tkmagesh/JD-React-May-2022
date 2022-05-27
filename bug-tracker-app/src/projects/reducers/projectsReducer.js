@@ -1,12 +1,9 @@
-const initialProjects = [
-    {id : 1, name : 'Bug Tracker'},
-    {id : 2, name : 'Expense Manager'},
-    {id : 3, name : 'Time Tracker'}
-]
-function projectsReducer(currentState = initialProjects, action){
+function projectsReducer(currentState = [], action){
     switch (action.type) {
         case 'PROJECTS_ADD':
             return [...currentState, action.payload];
+        case 'PROJECTS_INIT':
+            return action.payload;
         default:
             return currentState;
     }

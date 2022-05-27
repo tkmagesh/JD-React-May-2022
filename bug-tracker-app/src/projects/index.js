@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as projectActionCreators from './actions';
 
 const Projects = () => {
-    const { addNew } = bindActionCreators(projectActionCreators, useDispatch()) 
+    const { addNew, load } = bindActionCreators(projectActionCreators, useDispatch()) 
     const projects = useSelector(storeState => storeState.projectsState);  
     const [newProjectName, setNewProjectName] = React.useState(''); 
     return (
         <div>
             <h3>Projects</h3>
+            <button onClick={load}>Load Bugs</button>
+            <br/>
             <label htmlFor="">Project Name :</label>
             <input type="text" onChange={ evt => setNewProjectName(evt.target.value) }/>
             <button onClick={() => addNew(newProjectName)}>Add New</button>
