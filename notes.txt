@@ -167,7 +167,8 @@ Bug Tracker
     (done) 8. Refactor the 'Bug' component into smaller components (BugStats, BugSort, BugEdit, BugList, BugItem)
     9. Persist the bugs in the server
     (done) 10. Add & List the projects (project = {id, name})
-    11. Associate bugs with a project
+    (done) 11. Associate bugs with a project
+    12. Filter the bugs based on the project selected in the 'Projects' component
     12. Access the bugs using a unique URL (routing)
     
 
