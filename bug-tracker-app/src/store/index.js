@@ -29,9 +29,9 @@ const loggerMiddleware = store => next => action => {
     console.groupEnd();
 };
 
-const asyncMiddleware = store => next => action => {
+const asyncMiddleware = ({dispatch, getState}) => next => action => {
     if (typeof action === 'function'){
-        return action(store.dispatch);
+        return action(dispatch, getState);
     }
     return next(action);
 }

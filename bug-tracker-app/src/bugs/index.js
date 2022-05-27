@@ -11,7 +11,7 @@ import { useBugsSelector } from './useBugsSelector';
 const Bugs = () => {
     const dispatch = useDispatch();
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
-    const { addNew, toggle, remove, removeClosed } = bugActionDispatchers;
+    const { addNew, toggle, remove, removeClosed, load } = bugActionDispatchers;
 
     //Data preparation for the presenation
     /* 
@@ -38,6 +38,7 @@ const Bugs = () => {
     return (
             <div>
             <h3>Bugs</h3>
+            <button onClick={load}>Load Bugs</button>
             <div>
                 <label>Filter Bugs By Project :</label>
                 <input type="checkbox" />

@@ -10,7 +10,7 @@ const Projects = () => {
     return (
         <div>
             <h3>Projects</h3>
-            <button onClick={load}>Load Bugs</button>
+            <button onClick={load}>Load Projects</button>
             <br/>
             <label htmlFor="">Project Name :</label>
             <input type="text" onChange={ evt => setNewProjectName(evt.target.value) }/>

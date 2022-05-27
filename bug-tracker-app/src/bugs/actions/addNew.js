@@ -1,14 +1,32 @@
-//TO BE FIXED
-let _currentBugId = 0;
+import { save } from '../services/bugApi'
+
 
 export function addNew(bugName, projectId){
-    const newBug = {
-        id : ++_currentBugId,
-        name : bugName,
-        isClosed : false,
-        createdAt : new Date(),
-        projectId : projectId
-    };
-    const action = { type : 'BUGS_ADD', payload : newBug };
-    return action;
+    /* return function(dispatch){
+        const newBugData = {
+            id : 0,
+            name : bugName,
+            isClosed : false,
+            createdAt : new Date(),
+            projectId : projectId
+        };
+        save(newBugData)
+            .then(newBug => {
+                const action = { type : 'BUGS_ADD', payload : newBug };
+                dispatch(action);
+            })
+        
+    } */
+    return async function(dispatch){
+        const newBugData = {
+            id : 0,
+            name : bugName,
+            isClosed : false,
+            createdAt : new Date(),
+            projectId : projectId
+        };
+        const newBug = await save(newBugData)
+        const action = { type : 'BUGS_ADD', payload : newBug };
+        dispatch(action);
+    }
 };
