@@ -19,12 +19,13 @@
         setTimeout(function(){
             const result = x + y;
             console.log(`   [@service] returning result`)
-            callback(result);
+            callback(result)
         }, 4000);
     }
 
     function addAsyncClient(x,y){
         console.log(`[@client] invoking the service`)
+        
         addAsync(x,y, function(result){
             console.log(`[@client] result = ${result}`)
         });

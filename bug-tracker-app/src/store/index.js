@@ -29,7 +29,13 @@ const loggerMiddleware = store => next => action => {
     console.groupEnd();
 };
 
+const asyncMiddleware = store => next => action => {
+    if (typeof action === 'function'){
+        return action(store.dispatch);
+    }
+    return next(action);
+}
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer, applyMiddleware(logger, asyncMiddleware));
 
 export default store;

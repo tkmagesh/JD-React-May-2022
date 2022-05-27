@@ -7,16 +7,14 @@ export function addNew(projectName){
     return { type : 'PROJECTS_ADD', payload : newProject}
 }
 
+//async actions
 export function load(){
-
-    axios.get('http://localhost:3030/projects')
+    return function(dispatch){
+        axios.get('http://localhost:3030/projects')
             .then(response => response.data)
-            .then(projects => console.table(projects))
-
-    const projectsFromMemory = [
-        { id : 1, name : 'Bug Tracker (Memory)'},
-        { id : 2, name : 'Expense Manager (Memory)'},
-    ]
-    const action = { type : 'PROJECTS_INIT', payload : projectsFromMemory };
-    return action;
+            .then(projects => {
+                const action = { type : 'PROJECTS_INIT', payload : projects };
+                dispatch(action);
+            });
+    }
 }
