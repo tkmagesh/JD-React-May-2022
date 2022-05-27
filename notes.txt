@@ -230,3 +230,8 @@ applicatin structure
             
         /store
             /index.js (create the store)
+
+react-redux
+    Provider
+    useDispatch
+    useSelector

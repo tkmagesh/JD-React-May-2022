@@ -1,7 +1,12 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import * as projectActionCreators from './actions';
 
-const Projects = ({projects, addNew}) => {
-    const [newProjectName, setNewProjectName] = React.useState('');
+const Projects = () => {
+    const { addNew } = bindActionCreators(projectActionCreators, useDispatch()) 
+    const projects = useSelector(storeState => storeState.projectsState);  
+    const [newProjectName, setNewProjectName] = React.useState(''); 
     return (
         <div>
             <h3>Projects</h3>

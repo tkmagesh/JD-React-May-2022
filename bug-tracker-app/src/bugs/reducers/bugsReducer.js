@@ -10,7 +10,7 @@ function bugsReducer(currentState = [], action){
             return action.payload;
         case 'BUGS_REMOVE_MANY':
             const bugsToRemove = action.payload;
-            return currentState.filter(bug => !bugsToRemove.find(bt => bt.id == bug.id))
+            return currentState.filter(bug => !bugsToRemove.find(bt => bt.id === bug.id))
         default :
             return currentState
     }

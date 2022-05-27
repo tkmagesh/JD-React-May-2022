@@ -1,34 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { bindActionCreators } from 'redux';
+import { Provider } from 'react-redux';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import * as bugActionCreators from './bugs/actions';
-import * as projectActionCreators from './projects/actions';
 import store from './store';
 import Bugs from './bugs';
 import Projects from './projects';
 
-const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
-const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-function renderApp(){
-    const storeState = store.getState(),
-        bugs = storeState.bugsState,
-        projects = storeState.projectsState;
+root.render(
+  <React.StrictMode>
+    <Provider store ={store}>
+      <div>
+        <Projects  />
+        <Bugs  />
+    </div>
+    </Provider>
+  </React.StrictMode>
+);
 
-    root.render(
-      <React.StrictMode>
-         <div>
-            <Projects projects={projects} {...projectActionDispatchers} />
-            <Bugs bugs={bugs} {...bugActionDispatchers} />
-        </div>
-      </React.StrictMode>
-    );
-}
-renderApp();
-store.subscribe(renderApp);
 
 
 
