@@ -287,3 +287,6 @@ Implement the following
     add new bugs in the server
     update bugs in the server
     remove 1 bug in the server
+
+Redux dev tools
+    yarn add @redux-devtools/extension

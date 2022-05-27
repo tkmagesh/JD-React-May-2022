@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UseEffect</title>
+    <script src="babel.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+
+        const TimerContainer = () => {
+            const [showTimer, setShowTimer] = React.useState(true);
+            return (
+                <React.Fragment>
+                    <label>Show Timer</label>
+                    <input type="checkbox" checked={showTimer} onChange={ evt => setShowTimer(evt.target.checked)}/>
+                    {showTimer ? <Timer/> : null }
+                </React.Fragment>
+            )
+        }
+
+        const Timer = () => {
+            const [currentTime, setCurrentTime] = React.useState(Date());
+            React.useEffect(() => {
+                //this will be executed whenever the component is initialized / updated
+                 const timerId = setInterval(() => {
+                    setCurrentTime(Date())
+                }, 1000);
+                console.log('timer id = ', timerId);
+                return () => {
+                    //this will be executed with the component is unmounted
+                    console.log('Timer is unmounted')
+                    clearInterval(timerId)
+                }
+            }, [] /* all the data which when changed we want the given function execute */)
+            return (
+                <div>
+                    <h3>[{currentTime}]</h3>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<TimerContainer/>, document.getElementById('root'));
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+
+</body>
+</html>

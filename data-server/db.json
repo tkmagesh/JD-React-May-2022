@@ -1,11 +1,18 @@
 {
   "bugs": [
     {
-      "id": 10,
-      "name": "Server communication failure",
+      "id": 13,
+      "name": "asfdasfas",
       "isClosed": false,
-      "createdAt": "2022-04-08T09:46:01.973Z",
+      "createdAt": "2022-05-27T12:10:54.533Z",
       "projectId": 1
+    },
+    {
+      "id": 14,
+      "name": "Bug - 3",
+      "isClosed": false,
+      "createdAt": "2022-05-27T12:12:24.115Z",
+      "projectId": 2
     }
   ],
   "projects": [

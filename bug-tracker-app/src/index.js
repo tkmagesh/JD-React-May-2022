@@ -6,19 +6,46 @@ import reportWebVitals from './reportWebVitals';
 import store from './store';
 import Bugs from './bugs';
 import Projects from './projects';
+import Home from './home';
 
-import axios from 'axios';
-window['axios'] = axios;
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store ={store}>
+      <Router>
       <div>
-        <Projects  />
-        <Bugs  />
-    </div>
+          <div>
+            <span>
+              [ <Link to="/">Home</Link> ]
+            </span>
+            <span>
+              [ <Link to="/projects">Projects</Link> ]
+            </span>
+            <span>
+              [ <Link to="/bugs">Bugs</Link> ]
+            </span>
+          
+        </div>
+        <Switch>
+          <Route path="/projects">
+            <Projects />
+          </Route>
+          <Route path="/bugs">
+            <Bugs />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
     </Provider>
   </React.StrictMode>
 );

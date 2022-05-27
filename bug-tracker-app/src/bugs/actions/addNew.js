@@ -1,7 +1,7 @@
 import { save } from '../services/bugApi'
 
 
-export function addNew(bugName, projectId){
+export async function  addNew(bugName, projectId){
     /* return function(dispatch){
         const newBugData = {
             id : 0,
@@ -17,7 +17,7 @@ export function addNew(bugName, projectId){
             })
         
     } */
-    return async function(dispatch){
+   /*  return async function(dispatch){
         const newBugData = {
             id : 0,
             name : bugName,
@@ -28,5 +28,17 @@ export function addNew(bugName, projectId){
         const newBug = await save(newBugData)
         const action = { type : 'BUGS_ADD', payload : newBug };
         dispatch(action);
-    }
+    } */
+
+    //using the promise middleware
+    const newBugData = {
+            id : 0,
+            name : bugName,
+            isClosed : false,
+            createdAt : new Date(),
+            projectId : projectId
+        };
+    const newBug = await save(newBugData)
+    const action = { type : 'BUGS_ADD', payload : newBug };
+    return action;
 };

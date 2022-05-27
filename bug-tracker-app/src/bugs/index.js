@@ -8,6 +8,7 @@ import BugList from './components/BugList';
 
 import * as bugActionCreators from './actions';
 import { useBugsSelector } from './useBugsSelector';
+import { useEffect } from 'react';
 const Bugs = () => {
     const dispatch = useDispatch();
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
@@ -33,12 +34,15 @@ const Bugs = () => {
     }); 
     */
 
+    useEffect(() => {
+        load()
+    },[load]);
     
     const { bugs, projects, closedCount } = useBugsSelector();
     return (
             <div>
             <h3>Bugs</h3>
-            <button onClick={load}>Load Bugs</button>
+            {/* <button onClick={load}>Load Bugs</button> */}
             <div>
                 <label>Filter Bugs By Project :</label>
                 <input type="checkbox" />
