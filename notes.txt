@@ -236,3 +236,6 @@ react-redux
     Provider
     useDispatch
     useSelector
+
+Redux Middleware
+    Used to encapsulate any logic that is common across actions
