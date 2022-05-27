@@ -246,3 +246,38 @@ Redux Middleware
 Asynchronous Programming
     Asynchronous operation
         An operation that is initiated but not waited for its completion
+
+    Promise
+        An object designed to represent the eventual completion of an asynchronous operation
+
+To run the json-server
+    Execute the following command from the folder that has the data file
+        npx json-server db.json -p 3030
+
+
+Axios
+    Library for server communication
+    Installation 
+        yarn add axios
+
+    Usage
+        Retriving all projects
+        axios.get('http://localhost:3030/projects')
+            .then(response => response.data)
+            .then(projects => console.table(projects))
+
+        Adding a new project
+        const newProjectData = { id : 0, name : 'JSON Server' }
+        axios.post('http://localhost:3030/projects', newProjectData)
+            .then(response => response.data)
+            .then(newProject => console.log(newProject))
+
+        Updating an existing project
+        const updatedProjectData = { id : 4, name : 'Enhanced JSON Server'}
+        axios.put('http://localhost:3030/projects/4', updatedProjectData)
+            .then(response => response.data)
+            .then(updatedProject => console.log(updatedProject))
+                                    
+        Deleting an existing project
+        axios.delete('http://localhost:3030/projects/4')
+            .then(response => console.log('project deleted'))
