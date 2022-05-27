@@ -4,6 +4,7 @@ export { toggle } from './toggle'
 export { remove } from './remove'
 export { removeClosed } from './removeClosed' 
 export { load } from './load';
+export { sort } from './sort';
 
 /* 
 import { addNew } from './addNew'

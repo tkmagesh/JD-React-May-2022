@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 const Bugs = () => {
     const dispatch = useDispatch();
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
-    const { addNew, toggle, remove, removeClosed, load } = bugActionDispatchers;
+    const { addNew, toggle, remove, removeClosed, load, sort } = bugActionDispatchers;
 
     //Data preparation for the presenation
     /* 
@@ -36,7 +36,7 @@ const Bugs = () => {
 
     useEffect(() => {
         load()
-    },[load]);
+    },[]);
     
     const { bugs, projects, closedCount } = useBugsSelector();
     return (
@@ -50,7 +50,7 @@ const Bugs = () => {
             {/* Dumb / Presentation components */}
             <BugStats bugsCount={bugs.length} closedCount={closedCount} />
             <BugEdit addNew={addNew} projects={projects} />
-            <BugSort/>
+            <BugSort sort={sort}/>
             <BugList {...{bugs, toggle, remove, removeClosed}} />
         </div>
     )

@@ -10,7 +10,7 @@ const Projects = () => {
     const [newProjectName, setNewProjectName] = React.useState(''); 
     useEffect(() => {
         load();
-    }, [load])
+    }, [])
     return (
         <div>
             <h3>Projects</h3>

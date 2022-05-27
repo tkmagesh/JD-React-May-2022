@@ -1,18 +1,34 @@
 {
   "bugs": [
     {
-      "id": 13,
-      "name": "asfdasfas",
+      "id": 1,
+      "name": "Z",
       "isClosed": false,
-      "createdAt": "2022-05-27T12:10:54.533Z",
+      "createdAt": "2022-05-27T12:43:12.911Z",
       "projectId": 1
     },
     {
-      "id": 14,
-      "name": "Bug - 3",
+      "id": 2,
+      "name": "A",
       "isClosed": false,
-      "createdAt": "2022-05-27T12:12:24.115Z",
-      "projectId": 2
+      "createdAt": "2022-05-27T12:43:18.163Z",
+      "projectId": 1
+    },
+    {
+      "id": 3,
+      "name": "C",
+      "isClosed": true,
+      "createdAt": "2022-05-27T12:43:21.242Z",
+      "projectId": 1,
+      "projectName": "Bug Tracker"
+    },
+    {
+      "id": 4,
+      "name": "D",
+      "isClosed": true,
+      "createdAt": "2022-05-27T12:43:24.176Z",
+      "projectId": 1,
+      "projectName": "Bug Tracker"
     }
   ],
   "projects": [

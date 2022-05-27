@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store ={store}>
-      <Router>
+      {/* <Router>
       <div>
           <div>
             <span>
@@ -45,7 +45,10 @@ root.render(
           </Route>
         </Switch>
       </div>
-    </Router>
+    </Router> */}
+      <Projects/>
+      <Bugs/>
+      
     </Provider>
   </React.StrictMode>
 );
